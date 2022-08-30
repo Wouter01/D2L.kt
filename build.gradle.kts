@@ -37,7 +37,11 @@ kotlin {
 
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("com.squareup.retrofit2:retrofit:2.9.0")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -45,8 +49,6 @@ kotlin {
         }
         val jvmMain by getting
         val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
         val nativeMain by getting
         val nativeTest by getting
     }

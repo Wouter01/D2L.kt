@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="D2LRouteTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-30T19:42:04" hostname="MacBook-Air-van-Wouter.local" time="0.116">
+  <properties/>
+  <testcase name="test1()[jvm]" classname="D2LRouteTest" time="0.116"/>
+  <system-out><![CDATA[retrofit2.Retrofit@329dbdbf
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
