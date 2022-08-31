@@ -1,11 +1,9 @@
 package d2l.kt
 
+import d2l.kt.models.Course
+import d2l.kt.models.MyOrgUnitInfo
+import d2l.kt.models.PagedResultSet
 import d2l.kt.routes.CourseRoute
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
 
 suspend fun main() {
     with(D2LRequest) {
@@ -14,7 +12,11 @@ suspend fun main() {
         userID = ""
         userKey = ""
     }
+    val data = CourseRoute.getCourses()
 
-    CourseRoute.Courses().fetch()
+    println(data.items[0].orgUnit.name)
+
+    val data2 = CourseRoute.getCourseSemesterInfo(data.items.map { it.orgUnit.id })
+
+    println(data2[0].semester?.name)
 }
-

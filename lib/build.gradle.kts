@@ -8,8 +8,8 @@
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
-
+    id("org.jetbrains.kotlin.jvm") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
 }
@@ -37,7 +37,8 @@ dependencies {
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
-    
+
     implementation("io.ktor:ktor-client-core:2.1.0")
     implementation("io.ktor:ktor-client-cio:2.1.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
 }

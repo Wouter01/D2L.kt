@@ -1,27 +1,35 @@
 package d2l.kt.routes
 
-import d2l.kt.D2LRoute
 import d2l.kt.D2LService
+import d2l.kt.fetch
+import d2l.kt.models.Course
+import d2l.kt.models.CourseParent
+import d2l.kt.models.MyOrgUnitInfo
+import d2l.kt.models.PagedResultSet
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.util.*
 
-sealed class CourseRoute: D2LRoute {
-
-    override val platform: D2LService = D2LService.LP
-
-    class Courses: CourseRoute() {
-        override val builder = HttpRequestBuilder.invoke {
-            path("enrollments", "myenrollments/")
-            parameters.appendAll("sortBy", listOf("-StartDate", "-PinDate"))
-            parameters.append("orgUnitTypeId", "3")
+object CourseRoute {
+    suspend fun getCourses(): PagedResultSet<MyOrgUnitInfo> {
+        return fetch {
+            url {
+                path("enrollments", "myenrollments/")
+                parameters.appendAll("sortBy", listOf("-StartDate", "-PinDate"))
+                parameters.append("orgUnitTypeId", "3")
+            }
         }
     }
 
-    class CourseSemesterInfo(courseIds: List<Int>): CourseRoute() {
-        override val builder = HttpRequestBuilder.invoke {
-            path("courses", "parentorgunits")
-            parameters.append("orgUnitIdsCSV", courseIds.joinToString(","))
+    suspend fun getCourseSemesterInfo(courseIDs: List<Int>): List<CourseParent> {
+        val parents: List<List<CourseParent>> = courseIDs.chunked(25).map { IDs ->
+            fetch {
+                url {
+                    path("courses", "parentorgunits")
+                    encodedParameters.append("orgUnitIdsCSV", IDs.joinToString(","))
+                }
+            }
         }
+        return parents.flatten()
     }
-
 }
