@@ -8,11 +8,13 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 
 suspend fun main() {
-    val request = D2LRequest.getInstance(
-        "",
-        "",
-        "",
-        "")
+    with(D2LRequest) {
+        appID = ""
+        appKey = ""
+        userID = ""
+        userKey = ""
+    }
+
     CourseRoute.Courses().fetch()
 }
 

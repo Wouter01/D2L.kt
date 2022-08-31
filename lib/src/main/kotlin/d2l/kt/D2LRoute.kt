@@ -18,10 +18,11 @@ interface D2LRoute {
             host = "ufora.ugent.be"
             url.protocol = URLProtocol.HTTPS
             url.encodedPath = platform.url + url.encodedPath
-            val secureParams = request.build(method, url.encodedPath)
+            val secureParams = D2LRequest.build(method, url.encodedPath)
             url.parameters.appendAll(secureParams)
         }
-        val response: HttpResponse = HttpClient(CIO).request(builder)
+        print(builder.build().url)
+//        val response: HttpResponse = HttpClient(CIO).request(builder)
     }
 
 }
