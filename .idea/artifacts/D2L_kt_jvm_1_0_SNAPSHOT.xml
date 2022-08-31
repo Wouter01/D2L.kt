@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="D2L_kt-jvm-1.0-SNAPSHOT">
-    <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="D2L_kt-jvm-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="D2L_kt.jvmMain" />
-    </root>
-  </artifact>
-</component>
