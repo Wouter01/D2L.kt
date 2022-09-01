@@ -10,6 +10,7 @@ object D2LRequest {
     var appKey: String? = null
     var userID: String? = null
     var userKey: String? = null
+    var baseURL: String? = null
 
     fun build(method: HttpMethod = HttpMethod.Get, path: String): Parameters {
         val time = System.currentTimeMillis() / 1000

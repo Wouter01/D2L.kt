@@ -21,7 +21,7 @@ suspend inline fun <reified T> fetch(platform: D2LService = D2LService.LP, build
 
     with(request) {
         port = 443
-        host = "ufora.ugent.be"
+        host = D2LRequest.baseURL ?: throw D2LRequest.AuthError("Base URL is not set.")
         url.protocol = URLProtocol.HTTPS
         url.encodedPath = platform.url + url.encodedPath
         val secureParams = D2LRequest.build(method, url.encodedPath)
